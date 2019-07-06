@@ -23,10 +23,9 @@ matrix:
         apt:
           packages:
             - clang-7
-            - g++-7
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-tooilchain-xenial-7
+            - llvm-toolchain-xenial-7
 
 # Enable Slack notifications, disable e-mail
 notifications:
