@@ -26,6 +26,10 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-xenial-7
+    - os: osx
+      osx_image: xcode9.1
+      compiler: clang
+      env: CC=clang CXX=clang++
 
 # Enable Slack notifications, disable e-mail
 notifications:
