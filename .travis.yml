@@ -27,6 +27,7 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-xenial-7
     - os: osx
+      name: OSX, XCode9.1 Clang
       osx_image: xcode9.1
       compiler: clang
       env: CC=clang CXX=clang++
