@@ -34,6 +34,7 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.9.sdk.tar.xz
+          sudo mkdir /opt/MacOSX10.9.sdk
           sudo tar -xf MacOSX10.9.sdk.tar.xz -C /opt/MacOSX10.9.sdk
       - name: Build conda package
         run: |
