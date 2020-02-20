@@ -28,14 +28,16 @@ jobs:
         run: |     
           bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
           echo "::add-path::$HOME/miniconda/bin"
-      - name: Install conda build
-        run: conda install conda-build
       - name: Download MacOSX 10.9 SDK as conda-build dependency
         if: matrix.os == 'macos-latest'
         run: |
           wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.9.sdk.tar.xz
           sudo mkdir /opt/MacOSX10.9.sdk
           sudo tar -xf MacOSX10.9.sdk.tar.xz -C /opt/MacOSX10.9.sdk
+          ls /opt/MacOSX10.9.sdk
+      - name: Install conda build
+        run: conda install conda-build
+
       - name: Build conda package
         run: |
           conda-build -c conda-forge conda
