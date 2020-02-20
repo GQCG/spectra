@@ -15,18 +15,16 @@ jobs:
       - uses: actions/checkout@v1
       - name: Download conda (Linux)
         if: matrix.os == 'ubuntu-latest'
-        run:
-          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
+        run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
       - name: Download conda (macOS)
         if: matrix.os == 'macos-latest'
-        run:
-          wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O $HOME/miniconda.sh
-      - name: Install conda     
+        run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O $HOME/miniconda.sh
+      - name: Install conda   
+        run: |  
           bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
           echo "::add-path::$HOME/miniconda/bin"
       - name: Install conda dependencies 
-        run: |
-          conda install -c conda-forge cmake=3.13 eigen
+        run: conda install -c conda-forge cmake=3.13 eigen
       - name: Build, test and install
         run: |
           mkdir build && cd build
