@@ -35,12 +35,13 @@ jobs:
           sudo mkdir /opt/MacOSX10.9.sdk
           sudo tar -xf MacOSX10.9.sdk.tar.xz -C /opt
           ls -hal /opt/MacOSX10.9.sdk
-      - name: Install conda build
-        run: conda install conda-build
-
-      - name: Build conda package
+      - name: Deploy conda package
         run: |
-          conda-build -c conda-forge conda
+          conda create -n packaging -c conda-forge conda-build anaconda-client conda-verify
+          conda activate packaging
+          conda config --set anaconda_upload yes
+          conda-build -c conda-forge conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }}
+          anaconda logout
 
 # Check artifact location
 # Then anaconda upload with secret keys        
