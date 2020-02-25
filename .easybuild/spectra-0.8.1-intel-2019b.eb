@@ -1,0 +1,35 @@
+easyblock = 'CMakeMake'
+name = 'spectra'
+version = '0.8.1'
+homepage = 'https://github.com/yixuan/spectra'
+description = """GQCG fork of spectra, which is a header-only C++ library for large scale eigenvalue problems."""
+
+toolchain = {'name': 'intel', 'version' : '2019b'}
+
+sources = [{
+    'filename': 'spectra-0.8.1.tar.gz',
+    'git_config': {
+	    'url': 'https://github.com/GQCG',
+	    'repo_name': 'spectra',
+	    'tag' : 'master',
+	    'recursive': True,
+    },
+}]
+
+builddependencies = [
+    ('CMake', '3.15.3'),
+    ('Eigen', '3.3.7', '', True),
+]
+
+separate_build_dir = True
+
+sanity_check_paths = {
+  'files' : ['include/Spectra/GenEigsBase.h'],
+  'dirs' : [],
+}
+
+preconfigopts = 'EIGEN3_ROOT=${EBROOTEIGEN}/include'
+
+configopts = '-DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DBUILD_TESTS=TRUE -DCMAKE_VERBOSE_MAKEFILE=TRUE'
+
+runtest = 'test'
