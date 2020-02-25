@@ -11,11 +11,11 @@ requirements:
     build:
       - git
       - make
-      - pin_compatible('cmake', 'min_pin='x.x', max_pin='x')
+      - cmake {{ cmake }}
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
       - llvm-openmp               # [osx]
-      - pin_compatible('eigen', 'min_pin='x.x.x', 'max_pin='x.x')
+      - eigen {{ eigen }}
 test:
   commands:
     - test -f ${PREFIX}/include/Spectra/GenEigsBase.h
